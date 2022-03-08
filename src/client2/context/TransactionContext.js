@@ -88,18 +88,18 @@ export const TransactionProvider = ({ children }) => {
       const parsedAmount = ethers.utils.parseEther(amount)
 
       console.log("Request metamask")
-      // console.log(`PRAMS: ${connectedAcount}, ${addressTo}, ${parsedAmount._hex}`)
-      // await metamask.request({
-      //   method: 'eth_sendTransaction',
-      //   params: [
-      //     {
-      //       from: connectedAcount,
-      //       to: addressTo,
-      //       gas: '0x7EF40', // 520000 Gwei
-      //       value: parsedAmount._hex,
-      //     }
-      //   ]
-      // })
+      console.log(`PRAMS: ${connectedAcount}, ${addressTo}, ${parsedAmount._hex}`)
+      await metamask.request({
+        method: 'eth_sendTransaction',
+        params: [
+          {
+            from: connectedAcount,
+            to: addressTo,
+            gas: '0x7EF40', // 520000 Gwei
+            value: parsedAmount._hex,
+          }
+        ]
+      })
 
       console.log("Call SmartContract")
       const transactionHash = await transactionContract.publishTransaction(
